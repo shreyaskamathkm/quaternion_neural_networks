@@ -1,0 +1,16 @@
+{
+  "python.formatting.provider": "ruff",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "ruff.format": {
+    "preview": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
+  "python.linting.enabled": true,
+  "python.linting.ruffEnabled": true
+}

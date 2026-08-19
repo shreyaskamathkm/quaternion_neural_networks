@@ -1,0 +1,18 @@
+{
+  // Use the default Python file for launching
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run CLI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "quaternion_neural_networks.cli",
+      "console": "integratedTerminal",
+      "args": [
+        "run",
+        "--config-path",
+        "config/config.yaml"
+      ]
+    }
+  ]
+}
