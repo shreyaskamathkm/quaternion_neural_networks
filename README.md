@@ -37,17 +37,12 @@ This project is designed as a Python package, meaning that it can be bundled up 
 
 To package the project as both a [source distribution](https://packaging.python.org/en/latest/flow/#the-source-distribution-sdist) and a [wheel](https://packaging.python.org/en/latest/specifications/binary-distribution-format/):
 
-First, install the `build` package:
+Run the `uv build` command:
 ```shell
-pip install build
+uv build
 ```
 
-Then, run the build command:
-```shell
-python -m build
-```
-
-This will generate `dist/quaternion_neural_networks-0.0.1.tar.gz` and `dist/quaternion_neural_networks-0.0.1-py3-none-any.whl`.
+This will generate `dist/quaternion_neural_networks-0.1.0.tar.gz` and `dist/quaternion_neural_networks-0.1.0-py3-none-any.whl`.
 
 ## Enforcing Code Quality
 
@@ -64,7 +59,7 @@ make test
 ```
 Alternatively, you can run `pytest` directly:
 ```shell
-pytest
+uv run pytest
 ```
 
 Code coverage is provided by the [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/) plugin.
@@ -80,13 +75,13 @@ make lint
 ```
 Alternatively, you can run `ruff` directly:
 ```shell
-ruff check .
+uv run ruff check .
 ```
 
 To automatically fix fixable lint errors, run:
 
 ```shell
-ruff check . --fix
+uv run ruff check . --fix
 ```
 
 ## Automated Code Formatting
@@ -100,7 +95,7 @@ make format
 ```
 Alternatively, you can run `ruff` directly:
 ```shell
-ruff format .
+uv run ruff format .
 ```
 
 ## Type Checking
@@ -114,7 +109,7 @@ make typecheck
 ```
 Alternatively, you can run `mypy` directly:
 ```shell
-mypy .
+uv run mypy .
 ```
 
 ## Project Structure
@@ -125,11 +120,14 @@ This project uses a flat layout. This results in a directory structure like:
 quaternion_neural_networks
 ├── quaternion_neural_networks
 │   ├── __init__.py
-│   ├── cli.py
-│   └── schema.py
+│   ├── quaternion_conv.py
+│   ├── quaternion_linear.py
+│   ├── quaternion_ops.py
+│   └── ...
 ├── tests
-│   └── test_example.py
-└── pyproject.toml
+│   └── ...
+├── pyproject.toml
+└── uv.lock
 ```
 
 ## Licensing
