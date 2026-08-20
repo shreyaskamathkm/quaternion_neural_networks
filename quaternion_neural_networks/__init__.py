@@ -37,8 +37,6 @@ from quaternion_neural_networks.quaternion_sync_batchnorm import (
 )
 
 __all__ = [
-    "NaiveQuaternionBatchNorm2d",
-    "NaiveQuaternionGroupNorm2d",
     "QuatConv1d",
     "QuatConv2d",
     "QuatConv3d",

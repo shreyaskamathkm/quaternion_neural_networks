@@ -232,23 +232,24 @@ class QuatConv1d(_QuatConvNd):
         bias (bool, optional): If ``True``, adds a learnable bias to the output. Default: ``True``
 
     Shape:
-        - Input: :math:`(N, C_{in}, L_{in})`
-        - Output: :math:`(N, C_{out}, L_{out})` where
+        - Input: $(N, C_{in}, L_{in})$
+        - Output: $(N, C_{out}, L_{out})$ where
 
-          .. math::
+        $$
               L_{out} = \left\lfloor\frac{L_{in} + 2 \times \text{padding} - \text{dilation}
-                        \times (\text{kernel\_size} - 1) - 1}{\text{stride}} + 1\right\rfloor
+                        \times (\text{kernel_size} - 1) - 1}{\text{stride}} + 1\right\rfloor
 
+                        $$
     Attributes:
         weight (Tensor): the learnable weights of the module of shape
-            :math:`(\text{out\_channels}, \frac{\text{in\_channels}}{\text{groups}}, \text{kernel\_size})`.
+            $(\text{out_channels}, \frac{\text{in_channels}}{\text{groups}}, \text{kernel_size})$.
             The values of these weights are sampled from
-            :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-            :math:`k = \frac{groups}{C_\text{in} * \text{kernel\_size}}`
+            $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+            $k = \frac{groups}{C_\text{in} * \text{kernel_size}}$
         bias (Tensor):   the learnable bias of the module of shape
             (out_channels). If :attr:`bias` is ``True``, then the values of these weights are
-            sampled from :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-            :math:`k = \frac{groups}{C_\text{in} * \text{kernel\_size}}`
+            sampled from $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+            $k = \frac{groups}{C_\text{in} * \text{kernel_size}}$
 
     Examples::
 
@@ -295,28 +296,31 @@ class QuatConv2d(_QuatConvNd):
         bias (bool, optional): If ``True``, adds a learnable bias to the output. Default: ``True``
 
     Shape:
-        - Input: :math:`(N, C_{in}, H_{in}, W_{in})`
-        - Output: :math:`(N, C_{out}, H_{out}, W_{out})` where
+        - Input: $(N, C_{in}, H_{in}, W_{in})$
+        - Output: $(N, C_{out}, H_{out}, W_{out})$ where
 
-          .. math::
+        $$
               H_{out} = \left\lfloor\frac{H_{in}  + 2 \times \text{padding}[0] - \text{dilation}[0]
-                        \times (\text{kernel\_size}[0] - 1) - 1}{\text{stride}[0]} + 1\right\rfloor
+                        \times (\text{kernel_size}[0] - 1) - 1}{\text{stride}[0]} + 1\right\rfloor
 
-          .. math::
+          
+                        $$
+                        $$
               W_{out} = \left\lfloor\frac{W_{in}  + 2 \times \text{padding}[1] - \text{dilation}[1]
-                        \times (\text{kernel\_size}[1] - 1) - 1}{\text{stride}[1]} + 1\right\rfloor
+                        \times (\text{kernel_size}[1] - 1) - 1}{\text{stride}[1]} + 1\right\rfloor
 
+                        $$
     Attributes:
         weight (Tensor): the learnable weights of the module of shape
-                         :math:`(\text{out\_channels}, \frac{\text{in\_channels}}{\text{groups}},`
-                         :math:`\text{kernel\_size[0]}, \text{kernel\_size[1]})`.
+                         $(\text{out_channels}, \frac{\text{in_channels}}{\text{groups}},$
+                         $\text{kernel_size[0]}, \text{kernel_size[1]})$.
                          The values of these weights are sampled from
-                         :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{in} * \prod_{i=0}^{1}\text{kernel\_size}[i]}`
+                         $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{in} * \prod_{i=0}^{1}\text{kernel_size}[i]}$
         bias (Tensor):   the learnable bias of the module of shape (out_channels). If :attr:`bias` is ``True``,
                          then the values of these weights are
-                         sampled from :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{in} * \prod_{i=0}^{1}\text{kernel\_size}[i]}`
+                         sampled from $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{in} * \prod_{i=0}^{1}\text{kernel_size}[i]}$
 
     Examples::
 
@@ -375,32 +379,37 @@ class QuatConv3d(_QuatConvNd):
         bias (bool, optional): If ``True``, adds a learnable bias to the output. Default: ``True``
 
     Shape:
-        - Input: :math:`(N, C_{in}, D_{in}, H_{in}, W_{in})`
-        - Output: :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})` where
+        - Input: $(N, C_{in}, D_{in}, H_{in}, W_{in})$
+        - Output: $(N, C_{out}, D_{out}, H_{out}, W_{out})$ where
 
-          .. math::
+        $$
               D_{out} = \left\lfloor\frac{D_{in} + 2 \times \text{padding}[0] - \text{dilation}[0]
-                    \times (\text{kernel\_size}[0] - 1) - 1}{\text{stride}[0]} + 1\right\rfloor
+                    \times (\text{kernel_size}[0] - 1) - 1}{\text{stride}[0]} + 1\right\rfloor
 
-          .. math::
+          
+                    $$
+                    $$
               H_{out} = \left\lfloor\frac{H_{in} + 2 \times \text{padding}[1] - \text{dilation}[1]
-                    \times (\text{kernel\_size}[1] - 1) - 1}{\text{stride}[1]} + 1\right\rfloor
+                    \times (\text{kernel_size}[1] - 1) - 1}{\text{stride}[1]} + 1\right\rfloor
 
-          .. math::
+          
+                    $$
+                    $$
               W_{out} = \left\lfloor\frac{W_{in} + 2 \times \text{padding}[2] - \text{dilation}[2]
-                    \times (\text{kernel\_size}[2] - 1) - 1}{\text{stride}[2]} + 1\right\rfloor
+                    \times (\text{kernel_size}[2] - 1) - 1}{\text{stride}[2]} + 1\right\rfloor
 
+                    $$
     Attributes:
         weight (Tensor): the learnable weights of the module of shape
-                         :math:`(\text{out\_channels}, \frac{\text{in\_channels}}{\text{groups}},`
-                         :math:`\text{kernel\_size[0]}, \text{kernel\_size[1]}, \text{kernel\_size[2]})`.
+                         $(\text{out_channels}, \frac{\text{in_channels}}{\text{groups}},$
+                         $\text{kernel_size[0]}, \text{kernel_size[1]}, \text{kernel_size[2]})$.
                          The values of these weights are sampled from
-                         :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{in} * \prod_{i=0}^{2}\text{kernel\_size}[i]}`
+                         $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{in} * \prod_{i=0}^{2}\text{kernel_size}[i]}$
         bias (Tensor):   the learnable bias of the module of shape (out_channels). If :attr:`bias` is ``True``,
                          then the values of these weights are
-                         sampled from :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{in} * \prod_{i=0}^{2}\text{kernel\_size}[i]}`
+                         sampled from $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{in} * \prod_{i=0}^{2}\text{kernel_size}[i]}$
 
     Examples::
 
@@ -507,24 +516,25 @@ class QuatConvTranspose1d(_QuatConvTransposeNd):
         dilation (int or tuple, optional): Spacing between kernel elements. Default: 1
 
     Shape:
-        - Input: :math:`(N, C_{in}, L_{in})`
-        - Output: :math:`(N, C_{out}, L_{out})` where
+        - Input: $(N, C_{in}, L_{in})$
+        - Output: $(N, C_{out}, L_{out})$ where
 
-          .. math::
+        $$
               L_{out} = (L_{in} - 1) \times \text{stride} - 2 \times \text{padding} + \text{dilation}
-                        \times (\text{kernel\_size} - 1) + \text{output\_padding} + 1
+                        \times (\text{kernel_size} - 1) + \text{output_padding} + 1
 
+                        $$
     Attributes:
         weight (Tensor): the learnable weights of the module of shape
-                         :math:`(\text{in\_channels}, \frac{\text{out\_channels}}{\text{groups}},`
-                         :math:`\text{kernel\_size})`.
+                         $(\text{in_channels}, \frac{\text{out_channels}}{\text{groups}},$
+                         $\text{kernel_size})$.
                          The values of these weights are sampled from
-                         :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{out} * \text{kernel\_size}}`
+                         $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{out} * \text{kernel_size}}$
         bias (Tensor):   the learnable bias of the module of shape (out_channels).
                          If :attr:`bias` is ``True``, then the values of these weights are
-                         sampled from :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{out} * \text{kernel\_size}}`
+                         sampled from $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{out} * \text{kernel_size}}$
     """
 
     def __init__(self, in_channels, out_channels, kernel_size, stride=1,
@@ -568,27 +578,30 @@ class QuatConvTranspose2d(_QuatConvTransposeNd):
         dilation (int or tuple, optional): Spacing between kernel elements. Default: 1
 
     Shape:
-        - Input: :math:`(N, C_{in}, H_{in}, W_{in})`
-        - Output: :math:`(N, C_{out}, H_{out}, W_{out})` where
+        - Input: $(N, C_{in}, H_{in}, W_{in})$
+        - Output: $(N, C_{out}, H_{out}, W_{out})$ where
 
-        .. math::
+        $$
               H_{out} = (H_{in} - 1) \times \text{stride}[0] - 2 \times \text{padding}[0] + \text{dilation}[0]
-                        \times (\text{kernel\_size}[0] - 1) + \text{output\_padding}[0] + 1
-        .. math::
+                        \times (\text{kernel_size}[0] - 1) + \text{output_padding}[0] + 1
+        
+                        $$
+                        $$
               W_{out} = (W_{in} - 1) \times \text{stride}[1] - 2 \times \text{padding}[1] + \text{dilation}[1]
-                        \times (\text{kernel\_size}[1] - 1) + \text{output\_padding}[1] + 1
+                        \times (\text{kernel_size}[1] - 1) + \text{output_padding}[1] + 1
 
+                        $$
     Attributes:
         weight (Tensor): the learnable weights of the module of shape
-                         :math:`(\text{in\_channels}, \frac{\text{out\_channels}}{\text{groups}},`
-                         :math:`\text{kernel\_size[0]}, \text{kernel\_size[1]})`.
+                         $(\text{in_channels}, \frac{\text{out_channels}}{\text{groups}},$
+                         $\text{kernel_size[0]}, \text{kernel_size[1]})$.
                          The values of these weights are sampled from
-                         :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{out} * \prod_{i=0}^{1}\text{kernel\_size}[i]}`
+                         $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{out} * \prod_{i=0}^{1}\text{kernel_size}[i]}$
         bias (Tensor):   the learnable bias of the module of shape (out_channels)
                          If :attr:`bias` is ``True``, then the values of these weights are
-                         sampled from :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{out} * \prod_{i=0}^{1}\text{kernel\_size}[i]}`
+                         sampled from $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{out} * \prod_{i=0}^{1}\text{kernel_size}[i]}$
 
     Examples::
 
@@ -657,31 +670,36 @@ class QuatConvTranspose3d(_QuatConvTransposeNd):
         dilation (int or tuple, optional): Spacing between kernel elements. Default: 1
 
     Shape:
-        - Input: :math:`(N, C_{in}, D_{in}, H_{in}, W_{in})`
-        - Output: :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})` where
+        - Input: $(N, C_{in}, D_{in}, H_{in}, W_{in})$
+        - Output: $(N, C_{out}, D_{out}, H_{out}, W_{out})$ where
 
-        .. math::
+        $$
               D_{out} = (D_{in} - 1) \times \text{stride}[0] - 2 \times \text{padding}[0] + \text{dilation}[0]
-                        \times (\text{kernel\_size}[0] - 1) + \text{output\_padding}[0] + 1
-        .. math::
+                        \times (\text{kernel_size}[0] - 1) + \text{output_padding}[0] + 1
+        
+                        $$
+                        $$
               H_{out} = (H_{in} - 1) \times \text{stride}[1] - 2 \times \text{padding}[1] + \text{dilation}[1]
-                        \times (\text{kernel\_size}[1] - 1) + \text{output\_padding}[1] + 1
-        .. math::
+                        \times (\text{kernel_size}[1] - 1) + \text{output_padding}[1] + 1
+        
+                        $$
+                        $$
               W_{out} = (W_{in} - 1) \times \text{stride}[2] - 2 \times \text{padding}[2] + \text{dilation}[2]
-                        \times (\text{kernel\_size}[2] - 1) + \text{output\_padding}[2] + 1
+                        \times (\text{kernel_size}[2] - 1) + \text{output_padding}[2] + 1
 
 
+                        $$
     Attributes:
         weight (Tensor): the learnable weights of the module of shape
-                         :math:`(\text{in\_channels}, \frac{\text{out\_channels}}{\text{groups}},`
-                         :math:`\text{kernel\_size[0]}, \text{kernel\_size[1]}, \text{kernel\_size[2]})`.
+                         $(\text{in_channels}, \frac{\text{out_channels}}{\text{groups}},$
+                         $\text{kernel_size[0]}, \text{kernel_size[1]}, \text{kernel_size[2]})$.
                          The values of these weights are sampled from
-                         :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{out} * \prod_{i=0}^{2}\text{kernel\_size}[i]}`
+                         $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{out} * \prod_{i=0}^{2}\text{kernel_size}[i]}$
         bias (Tensor):   the learnable bias of the module of shape (out_channels)
                          If :attr:`bias` is ``True``, then the values of these weights are
-                         sampled from :math:`\mathcal{U}(-\sqrt{k}, \sqrt{k})` where
-                         :math:`k = \frac{groups}{C_\text{out} * \prod_{i=0}^{2}\text{kernel\_size}[i]}`
+                         sampled from $\mathcal{U}(-\sqrt{k}, \sqrt{k})$ where
+                         $k = \frac{groups}{C_\text{out} * \prod_{i=0}^{2}\text{kernel_size}[i]}$
 
     Examples::
 

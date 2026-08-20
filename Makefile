@@ -25,6 +25,16 @@ format: ## Format the code
 	uv run ruff format .
 .PHONY: format
 
+##@ Documentation
+
+docs-serve: ## Serve the documentation locally
+	uv run mkdocs serve
+.PHONY: docs-serve
+
+docs-build: ## Build the documentation
+	uv run mkdocs build
+.PHONY: docs-build
+
 ##@ Installation
 
 edit-install: ## Install the package in editable mode

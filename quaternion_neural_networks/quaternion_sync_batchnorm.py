@@ -62,7 +62,7 @@ _PrimaryMessage = collections.namedtuple("_PrimaryMessage", ["sum", "inv_std"])
 
 
 class _Synchronized_Quaternion_BatchNorm(QuaternionBatchNorm2d):
-    def __init__(self, num_features, eps=1e-5, momentum=0.001, affine=True):
+    def __init__(self, num_features: int, eps: float = 1e-5, momentum: float = 0.001, affine: bool = True):
         super().__init__(num_features, eps=eps, momentum=momentum, affine=affine)
         self._sync_primary = SyncPrimary(self._data_parallel_primary)
         self._is_parallel = False
@@ -186,10 +186,10 @@ class Synchronized_Quaternion_BatchNorm1d(_Synchronized_Quaternion_BatchNorm):
     r"""Applies Synchronized Batch Normalization over a 2d or 3d input that is seen as a
     mini-batch.
 
-    .. math::
-
+    $$
         y = \frac{x - mean[x]}{ \sqrt{Var[x] + \epsilon}} * gamma + beta
 
+        $$
     This module differs from the built-in PyTorch BatchNorm1d as the mean and
     standard-deviation are reduced across all devices during training.
 
@@ -216,18 +216,18 @@ class Synchronized_Quaternion_BatchNorm1d(_Synchronized_Quaternion_BatchNorm):
     on `(N, L)` slices, it's common terminology to call this Temporal BatchNorm
 
     Args:
-        num_features: num_features from an expected input of size
+        num_features (int): num_features from an expected input of size
             `batch_size x num_features [x width]`
-        eps: a value added to the denominator for numerical stability.
+        eps (float): a value added to the denominator for numerical stability.
             Default: 1e-5
-        momentum: the value used for the running_mean and running_var
+        momentum (float): the value used for the running_mean and running_var
             computation. Default: 0.1
-        affine: a boolean value that when set to ``True``, gives the layer learnable
+        affine (bool): a boolean value that when set to ``True``, gives the layer learnable
             affine parameters. Default: ``True``
 
     Shape:
-        - Input: :math:`(N, C)` or :math:`(N, C, L)`
-        - Output: :math:`(N, C)` or :math:`(N, C, L)` (same shape as input)
+        - Input: $(N, C)$ or $(N, C, L)$
+        - Output: $(N, C)$ or $(N, C, L)$ (same shape as input)
 
     Examples:
         >>> # With Learnable Parameters
@@ -248,10 +248,10 @@ class Synchronized_Quaternion_BatchNorm2d(_Synchronized_Quaternion_BatchNorm):
     r"""Applies Batch Normalization over a 4d input that is seen as a mini-batch
     of 3d inputs
 
-    .. math::
-
+    $$
         y = \frac{x - mean[x]}{ \sqrt{Var[x] + \epsilon}} * gamma + beta
 
+        $$
     This module differs from the built-in PyTorch BatchNorm2d as the mean and
     standard-deviation are reduced across all devices during training.
 
@@ -278,18 +278,18 @@ class Synchronized_Quaternion_BatchNorm2d(_Synchronized_Quaternion_BatchNorm):
     on `(N, H, W)` slices, it's common terminology to call this Spatial BatchNorm
 
     Args:
-        num_features: num_features from an expected input of
+        num_features (int): num_features from an expected input of
             size batch_size x num_features x height x width
-        eps: a value added to the denominator for numerical stability.
+        eps (float): a value added to the denominator for numerical stability.
             Default: 1e-5
-        momentum: the value used for the running_mean and running_var
+        momentum (float): the value used for the running_mean and running_var
             computation. Default: 0.1
-        affine: a boolean value that when set to ``True``, gives the layer learnable
+        affine (bool): a boolean value that when set to ``True``, gives the layer learnable
             affine parameters. Default: ``True``
 
     Shape:
-        - Input: :math:`(N, C, H, W)`
-        - Output: :math:`(N, C, H, W)` (same shape as input)
+        - Input: $(N, C, H, W)$
+        - Output: $(N, C, H, W)$ (same shape as input)
 
     Examples:
         >>> # With Learnable Parameters
@@ -310,10 +310,10 @@ class Synchronized_Quaternion_BatchNorm3d(_Synchronized_Quaternion_BatchNorm):
     r"""Applies Batch Normalization over a 5d input that is seen as a mini-batch
     of 4d inputs
 
-    .. math::
-
+    $$
         y = \frac{x - mean[x]}{ \sqrt{Var[x] + \epsilon}} * gamma + beta
 
+        $$
     This module differs from the built-in PyTorch BatchNorm3d as the mean and
     standard-deviation are reduced across all devices during training.
 
@@ -341,18 +341,18 @@ class Synchronized_Quaternion_BatchNorm3d(_Synchronized_Quaternion_BatchNorm):
     or Spatio-temporal BatchNorm
 
     Args:
-        num_features: num_features from an expected input of
+        num_features (int): num_features from an expected input of
             size batch_size x num_features x depth x height x width
-        eps: a value added to the denominator for numerical stability.
+        eps (float): a value added to the denominator for numerical stability.
             Default: 1e-5
-        momentum: the value used for the running_mean and running_var
+        momentum (float): the value used for the running_mean and running_var
             computation. Default: 0.1
-        affine: a boolean value that when set to ``True``, gives the layer learnable
+        affine (bool): a boolean value that when set to ``True``, gives the layer learnable
             affine parameters. Default: ``True``
 
     Shape:
-        - Input: :math:`(N, C, D, H, W)`
-        - Output: :math:`(N, C, D, H, W)` (same shape as input)
+        - Input: $(N, C, D, H, W)$
+        - Output: $(N, C, D, H, W)$ (same shape as input)
 
     Examples:
         >>> # With Learnable Parameters
