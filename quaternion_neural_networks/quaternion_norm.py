@@ -11,16 +11,16 @@ class QuaternionGroupNorm2d(nn.Module):
     the paper `Group Normalization`_ .
 
     Args:
-        num_groups (int): number of groups to separate the channels into
+        groups_per_quat (int): number of groups per quaternion
         num_channels (int): number of channels expected in input
-        eps: a value added to the denominator for numerical stability. Default: 1e-5
-        affine: a boolean value that when set to ``True``, this module
+        eps (float): a value added to the denominator for numerical stability. Default: 1e-5
+        affine (bool): a boolean value that when set to ``True``, this module
             has learnable per-channel affine parameters initialized to ones (for weights)
             and zeros (for biases). Default: ``True``.
 
     Shape:
-        - Input: :math:`(N, C, *)` where :math:`C=\text{num\_channels}`
-        - Output: :math:`(N, C, *)` (same shape as input)
+        - Input: $(N, C, *)$ where $C=\text{num_channels}$
+        - Output: $(N, C, *)$ (same shape as input)
 
     Examples::
 
@@ -39,7 +39,7 @@ class QuaternionGroupNorm2d(nn.Module):
     __constants__: ClassVar[list[str]] = ['num_groups', 'num_channels', 'eps', 'affine', 'weight',
                      'bias']
 
-    def __init__(self, groups_per_quat, num_channels, eps=1e-5, affine=True):
+    def __init__(self, groups_per_quat: int, num_channels: int, eps: float = 1e-5, affine: bool = True):
         super().__init__()
 
         assert num_channels % 4 == 0, 'The number_features should be divisible by 4'
@@ -75,7 +75,7 @@ class QuaternionBatchNorm2d(nn.Module):
     r"""Applies a 2D Quaternion Batch Normalization by using a single variance across the incoming data.
         """
 
-    def __init__(self, num_features, eps=1e-5, momentum=0.1, affine=True, track_running_stats=True):
+    def __init__(self, num_features: int, eps: float = 1e-5, momentum: float = 0.1, affine: bool = True, track_running_stats: bool = True):
         super().__init__()
 
         self.num_features = num_features // 4

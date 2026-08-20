@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "quaternion_neural_networks"
-version = "0.0.1"
+version = "0.1.0"
 description = "A short description of the project."
 readme = "README.md"
 authors = [{ name = "shreyaskamathkm@gmail.com"}]
@@ -68,7 +68,7 @@ check_untyped_defs = false
 ignore_missing_imports = true
 
 [tool.bumpversion]
-current_version = "0.0.1"
+current_version = "0.1.0"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
 serialize = ["{major}.{minor}.{patch}"]
 search = "{current_version}"
