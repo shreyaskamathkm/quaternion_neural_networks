@@ -150,6 +150,18 @@ class QuaternionLinearAutograd(Module):
         seed (Optional[int], optional): Random seed. Defaults to None.
         rotation (bool, optional): Use rotation. Defaults to False.
         quaternion_format (bool, optional): Use quaternion format. Defaults to False.
+
+    Shape:
+        - Input: `(*, H_in)` where `*` means any number of dimensions including none and `H_in = in_features`.
+        - Output: `(*, H_out)` where all but the last dimension are the same shape as the input and `H_out = out_features`.
+
+    Examples::
+
+        >>> m = QuaternionLinearAutograd(20, 32)
+        >>> input = torch.randn(128, 20)
+        >>> output = m(input)
+        >>> print(output.size())
+        torch.Size([128, 32])
     """
 
     def __init__(self, in_features: int, out_features: int, bias: bool = True, seed: int | None = None, rotation: bool = False, quaternion_format: bool = False):
@@ -212,6 +224,18 @@ class QuaternionLinear(Module):
         init_criterion (str, optional): Initialization criterion. Defaults to 'glorot'.
         weight_init (str, optional): Weight initialization method. Defaults to 'quaternion'.
         seed (Optional[int], optional): Random seed. Defaults to None.
+
+    Shape:
+        - Input: `(*, H_in)` where `*` means any number of dimensions including none and `H_in = in_features`.
+        - Output: `(*, H_out)` where all but the last dimension are the same shape as the input and `H_out = out_features`.
+
+    Examples::
+
+        >>> m = QuaternionLinear(20, 32)
+        >>> input = torch.randn(128, 20)
+        >>> output = m(input)
+        >>> print(output.size())
+        torch.Size([128, 32])
     """
 
     def __init__(self, in_features: int, out_features: int, bias: bool = True, init_criterion: str = 'glorot', weight_init: str = 'quaternion', seed: int | None = None):

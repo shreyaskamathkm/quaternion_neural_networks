@@ -475,11 +475,11 @@ class QuatConv2d(_QuatConvNd):
     Examples::
 
         >>> # With square kernels and equal stride
-        >>> m = nn.Conv2d(16, 33, 3, stride=2)
+        >>> m = QuatConv2d(16, 32, 3, stride=2)
         >>> # non-square kernels and unequal stride and with padding
-        >>> m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))
+        >>> m = QuatConv2d(16, 32, (3, 5), stride=(2, 1), padding=(4, 2))
         >>> # non-square kernels and unequal stride and with padding and dilation
-        >>> m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2), dilation=(3, 1))
+        >>> m = QuatConv2d(16, 32, (3, 5), stride=(2, 1), padding=(4, 2), dilation=(3, 1))
         >>> input = torch.randn(20, 16, 50, 100)
         >>> output = m(input)
 
@@ -597,9 +597,9 @@ class QuatConv3d(_QuatConvNd):
     Examples::
 
         >>> # With square kernels and equal stride
-        >>> m = nn.Conv3d(16, 33, 3, stride=2)
+        >>> m = QuatConv3d(16, 32, 3, stride=2)
         >>> # non-square kernels and unequal stride and with padding
-        >>> m = nn.Conv3d(16, 33, (3, 5, 2), stride=(2, 1, 1), padding=(4, 2, 0))
+        >>> m = QuatConv3d(16, 32, (3, 5, 2), stride=(2, 1, 1), padding=(4, 2, 0))
         >>> input = torch.randn(20, 16, 10, 50, 100)
         >>> output = m(input)
 
@@ -887,15 +887,15 @@ class QuatConvTranspose2d(_QuatConvTransposeNd):
     Examples::
 
         >>> # With square kernels and equal stride
-        >>> m = nn.ConvTranspose2d(16, 33, 3, stride=2)
+        >>> m = QuatConvTranspose2d(16, 32, 3, stride=2)
         >>> # non-square kernels and unequal stride and with padding
-        >>> m = nn.ConvTranspose2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))
+        >>> m = QuatConvTranspose2d(16, 32, (3, 5), stride=(2, 1), padding=(4, 2))
         >>> input = torch.randn(20, 16, 50, 100)
         >>> output = m(input)
         >>> # exact output size can be also specified as an argument
         >>> input = torch.randn(1, 16, 12, 12)
-        >>> downsample = nn.Conv2d(16, 16, 3, stride=2, padding=1)
-        >>> upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)
+        >>> downsample = QuatConv2d(16, 16, 3, stride=2, padding=1)
+        >>> upsample = QuatConvTranspose2d(16, 16, 3, stride=2, padding=1)
         >>> h = downsample(input)
         >>> h.size()
         torch.Size([1, 16, 6, 6])
@@ -1021,9 +1021,9 @@ class QuatConvTranspose3d(_QuatConvTransposeNd):
     Examples::
 
         >>> # With square kernels and equal stride
-        >>> m = nn.ConvTranspose3d(16, 33, 3, stride=2)
+        >>> m = QuatConvTranspose3d(16, 32, 3, stride=2)
         >>> # non-square kernels and unequal stride and with padding
-        >>> m = nn.ConvTranspose3d(16, 33, (3, 5, 2), stride=(2, 1, 1), padding=(0, 4, 2))
+        >>> m = QuatConvTranspose3d(16, 32, (3, 5, 2), stride=(2, 1, 1), padding=(0, 4, 2))
         >>> input = torch.randn(20, 16, 10, 50, 100)
         >>> output = m(input)
 

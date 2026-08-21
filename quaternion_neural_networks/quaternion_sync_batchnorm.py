@@ -231,9 +231,9 @@ class Synchronized_Quaternion_BatchNorm1d(_Synchronized_Quaternion_BatchNorm):
 
     Examples:
         >>> # With Learnable Parameters
-        >>> m = SynchronizedBatchNorm1d(100)
+        >>> m = Synchronized_Quaternion_BatchNorm1d(100)
         >>> # Without Learnable Parameters
-        >>> m = SynchronizedBatchNorm1d(100, affine=False)
+        >>> m = Synchronized_Quaternion_BatchNorm1d(100, affine=False)
         >>> input = torch.autograd.Variable(torch.randn(20, 100))
         >>> output = m(input)
     """
@@ -293,9 +293,9 @@ class Synchronized_Quaternion_BatchNorm2d(_Synchronized_Quaternion_BatchNorm):
 
     Examples:
         >>> # With Learnable Parameters
-        >>> m = SynchronizedBatchNorm2d(100)
+        >>> m = Synchronized_Quaternion_BatchNorm2d(100)
         >>> # Without Learnable Parameters
-        >>> m = SynchronizedBatchNorm2d(100, affine=False)
+        >>> m = Synchronized_Quaternion_BatchNorm2d(100, affine=False)
         >>> input = torch.autograd.Variable(torch.randn(20, 100, 35, 45))
         >>> output = m(input)
     """
@@ -356,9 +356,9 @@ class Synchronized_Quaternion_BatchNorm3d(_Synchronized_Quaternion_BatchNorm):
 
     Examples:
         >>> # With Learnable Parameters
-        >>> m = SynchronizedBatchNorm3d(100)
+        >>> m = Synchronized_Quaternion_BatchNorm3d(100)
         >>> # Without Learnable Parameters
-        >>> m = SynchronizedBatchNorm3d(100, affine=False)
+        >>> m = Synchronized_Quaternion_BatchNorm3d(100, affine=False)
         >>> input = torch.autograd.Variable(torch.randn(20, 100, 35, 45, 10))
         >>> output = m(input)
     """
@@ -387,7 +387,7 @@ def patch_sync_batchnorm():
 def convert_model(module):
     """Traverse the input module and its child recursively
        and replace all instance of torch.nn.modules.batchnorm.BatchNorm*N*d
-       to SynchronizedBatchNorm*N*d
+       to Synchronized_Quaternion_BatchNorm*N*d
     Args:
         module: the input module needs to be convert to SyncBN model
     Examples:
