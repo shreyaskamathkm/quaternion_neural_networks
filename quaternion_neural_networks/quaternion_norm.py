@@ -24,13 +24,11 @@ class QuaternionGroupNorm2d(nn.Module):
 
     Examples::
 
-        >>> input = torch.randn(20, 6, 10, 10)
-        >>> # Separate 6 channels into 3 groups
-        >>> m = nn.GroupNorm(3, 6)
-        >>> # Separate 6 channels into 6 groups (equivalent with InstanceNorm)
-        >>> m = nn.GroupNorm(6, 6)
-        >>> # Put all 6 channels into a single group (equivalent with LayerNorm)
-        >>> m = nn.GroupNorm(1, 6)
+        >>> input = torch.randn(20, 8, 10, 10)
+        >>> # Separate 2 quaternion channels into 2 groups
+        >>> m = QuaternionGroupNorm2d(2, 8)
+        >>> # Put all 2 quaternion channels into a single group
+        >>> m = QuaternionGroupNorm2d(1, 8)
         >>> # Activating the module
         >>> output = m(input)
 
